@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+
+data:
+  artifactRepository: |
+    archiveLogs: true
+    s3:
+      endpoint: s3.jp-tok.cloud-object-storage.appdomain.cloud
+      bucket: argo-workflow-artifacts
+      insecure: false
+      accessKeySecret:
+        name: my-icos-cred
+        key: accesskey
+      secretKeySecret:
+        name: my-icos-cred
+        key: secretkey
+
+  persistence: |
+    connectionPool:
+      maxIdleConns: 100
+      maxOpenConns: 0
+      connMaxLifetime: 0s
+    nodeStatusOffLoad: true
+    archive: true
+    archiveTTL: 180d
+    postgresql:
+      host: postgresql-cluster.default.svc.cluster.local
+      port: 5432
+      database: postgres
+      tableName: argo_workflows
+      userNameSecret:
+        name: argo-postgres-config
+        key: username
+      passwordSecret:
+        name: argo-postgres-config
+        key: password
+
+  containerRuntimeExecutor: k8sapi        

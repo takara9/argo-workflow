@@ -1,0 +1,21 @@
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: postgresql-cluster
+spec:
+  databases:
+    argodb: argo
+  numberOfInstances: 2
+  postgresql:
+    version: '11'
+  teamId: postgresql
+  users:
+    argodb_user: []
+    argo:
+      - superuser
+      - createdb
+  volume:
+    size: 5Gi
+  patroni:
+    pg_hba:
+      - host all all 0.0.0.0/0 md5

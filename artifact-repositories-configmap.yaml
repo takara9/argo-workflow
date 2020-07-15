@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: artifact-repositories
+data:
+  minio: |
+    s3:
+      endpoint: s3.jp-tok.cloud-object-storage.appdomain.cloud
+      bucket: argo-workflow-artifacts
+      insecure: false
+      accessKeySecret:
+        name: my-icos-cred
+        key: accesskey
+      secretKeySecret:
+        name: my-icos-cred
+        key: secretkey
+      
+

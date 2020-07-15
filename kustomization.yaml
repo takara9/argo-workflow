@@ -1,0 +1,10 @@
+resources:
+  - workflow-controller-configmap.yaml
+  - artifact-repositories-configmap.yaml  
+  - ServiceAccount_RBAC.yaml  
+  - icos-cred.yaml
+  - postgresql-cred.yaml
+  - CustomResourceDefinition.yaml
+  - argo-server.yaml    
+  - workflow-controller-metrics.yaml
+
